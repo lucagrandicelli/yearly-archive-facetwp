@@ -3,6 +3,8 @@
 
 This Wordpress plugin is an add-on for the FacetWP plugin ([https://facetwp.com/](https://facetwp.com/)). It adds a new facet type called "Yearly Archive" which can display a list of years with an associated counter of published posts.
 
+[![Wordpress Plugin Version](https://img.shields.io/wordpress/plugin/v/yearly-archive-facetwp.svg?style=flat-square)](https://wordpress.org/plugins/yearly-archive-facetwp/) [![Wordpress Plugin: Tested WP Version](https://img.shields.io/wordpress/plugin/tested/yearly-archive-facetwp.svg?style=flat-square)](https://wordpress.org/plugins/yearly-archive-facetwp/)
+
 ## How it works (Youtube video)
 [![Youtube Video](http://img.youtube.com/vi/3Ddbagri8d0/1.jpg)](http://www.youtube.com/watch?v=3Ddbagri8d0)
 
