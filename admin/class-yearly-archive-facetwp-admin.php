@@ -96,17 +96,6 @@ class Yearly_Archive_FacetWPWP_Admin {
 	}
 
 	/**
-	 * This function adds a new facet for the FacetWP plugin using wordpress filters.
-	 *
-	 * @return void
-	 */
-	public function add_facet() {
-
-		// Registering the new facet.
-		add_filter( 'facetwp_facet_types', array( $this, 'register_facet_type' ) );
-	}
-
-	/**
 	 * This function registers the new facet by initializing from its core class.
 	 *
 	 * @param [array] $facet_types

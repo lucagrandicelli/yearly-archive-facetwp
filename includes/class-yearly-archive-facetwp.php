@@ -57,8 +57,8 @@ class Yearly_Archive_FacetWP {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'PLUGIN_NAME_VERSION' ) ) {
-			$this->version = PLUGIN_NAME_VERSION;
+		if ( defined( 'ARP_VERSION' ) ) {
+			$this->version = ARP_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
@@ -152,14 +152,14 @@ class Yearly_Archive_FacetWP {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
-		// Registering new facet on plugin init.
-		$this->loader->add_action( 'init', $plugin_admin, 'add_facet' );
-
 		// Adding plugin's compatibility check on admin init.
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'compatibility_check' );
 		
 		// Adding additional admin notices.
 		$this->loader->add_action( 'admin_notices', $plugin_admin, 'admin_notice' );
+
+		// Registering new facet on plugin init.
+		$this->loader->add_filter( 'facetwp_facet_types', $plugin_admin ,'register_facet_type', 10, 1);
 	}
 
 	/**
