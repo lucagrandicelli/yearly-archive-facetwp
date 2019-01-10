@@ -154,12 +154,12 @@ class Yearly_Archive_FacetWP {
 
 		// Adding plugin's compatibility check on admin init.
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'compatibility_check' );
-		
+
 		// Adding additional admin notices.
 		$this->loader->add_action( 'admin_notices', $plugin_admin, 'admin_notice' );
 
 		// Registering new facet on plugin init.
-		$this->loader->add_filter( 'facetwp_facet_types', $plugin_admin ,'register_facet_type', 10, 1);
+		$this->loader->add_filter( 'facetwp_facet_types', $plugin_admin, 'register_facet_type', 10, 1 );
 	}
 
 	/**

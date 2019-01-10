@@ -33,7 +33,7 @@ class Yearly_Archive_FacetWPWP_Admin {
 	 * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
-	
+
 
 	/**
 	 * Initialize the class and set its properties.
@@ -45,7 +45,7 @@ class Yearly_Archive_FacetWPWP_Admin {
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 	}
 
@@ -115,16 +115,16 @@ class Yearly_Archive_FacetWPWP_Admin {
 
 		/**
 		 * This functions takes into account any available admin deferred notice and displays it.
-		 * 
+		 *
 		 * @return void
 		 */
-		
+
 		if ( $notices = get_option( PLUGIN_PREFIX . '_deferred_admin_notices' ) ) {
 			foreach ( $notices as $notice ) echo "$notice";
 			delete_option( PLUGIN_PREFIX . '_deferred_admin_notices' );
 		}
 	}
-	
+
 	/**
 	 * This function adds custom notice to the admin's deferred notice list.
 	 *
@@ -133,32 +133,31 @@ class Yearly_Archive_FacetWPWP_Admin {
 	 * @param boolean $dismissible
 	 * @return void
 	 */
-	public static function add_notice($code, $text, $type, $dismissible = false) {
+	public static function add_notice( $code, $text, $type, $dismissible = false ) {
 
 		/**
 		 * This function takes a notice's details as input, builds its html and adds
 		 * the notice to the admin's deferred notice list managed by an internal option.
 		 */
-		
+
 		// Getting option.
 		$notices = get_option( PLUGIN_PREFIX . '_deferred_admin_notices', array() );
 
 		// Checking if notice alreadys exists in queue.
-		if ( !array_key_exists( $code , $notices ) ) {
+		if ( ! array_key_exists( $code, $notices ) ) {
 
 			// Setting up notice class.
-			$notice_css_class = "notice notice-$type";
-			if ( $dismissible ) $notice_css_class .= ' is-dismissible';
+			$notice_css_class = $dismissible ? "notice notice-$type is-dismissible" : "notice notice-$type";
 
 			// Adding notice HTML to $notices array.
-			$notices[$code] = "<div class=\"$notice_css_class\"><p><strong>$text</strong></p></div>";
+			$notices[ $code ] = "<div class=\"$notice_css_class\"><p><strong>$text</strong></p></div>";
 
 			// Updating option.
 			update_option( PLUGIN_PREFIX . '_deferred_admin_notices', $notices );
 		}
 	}
-		
-	
+
+
 	/**
 	 * Performs a compatibility test.
 	 */
@@ -167,7 +166,7 @@ class Yearly_Archive_FacetWPWP_Admin {
 		/**
 		 * This function proviedes multiple compatibility tests
 		 * in order to make the Facet WP Yearly Archive properly work.
-		 * 
+		 *
 		 * First of all, we need to check that the main FacetWP plugin
 		 * exists and is installed on the WP system.
 		 */
@@ -176,7 +175,7 @@ class Yearly_Archive_FacetWPWP_Admin {
 		if ( class_exists( MAIN_FACETWP_CLASS ) ) return true;
 
 		// If the main plugin has not been installed, warn the user by creating and adding a custom notice.
-		Yearly_Archive_FacetWPWP_Admin::add_notice('FACETWP_MISSING',  __('Warning! The Yearly Archive FacetWP plugin requires the official FacetWP plugin. Please install and activate this first.', 'yearly-archive-facetwp' ), 'warning' );
+		Yearly_Archive_FacetWPWP_Admin::add_notice( 'FACETWP_MISSING', __( 'Warning! The Yearly Archive FacetWP plugin requires the official FacetWP plugin. Please install and activate this first.', 'yearly-archive-facetwp' ), 'warning' );
 
 		return false;
 	}
