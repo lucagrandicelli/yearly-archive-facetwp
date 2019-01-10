@@ -47,7 +47,7 @@ class Yearly_Archive_FacetWP_Core {
 		// Count setting
         $limit = ctype_digit( $facet['count'] ) ? $facet['count'] : 10;
 
-		// Apllying filters to the SQL statement.
+		// Applying filters to the SQL statement.
 		$from_clause  = apply_filters( 'facetwp_facet_from', $from_clause, $facet );
 		$orderby      = apply_filters( 'facetwp_facet_orderby', $orderby, $facet );
 		$where_clause = apply_filters( 'facetwp_facet_where', $where_clause, $facet );
