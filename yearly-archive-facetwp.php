@@ -1,14 +1,14 @@
 <?php
 /**
  * Yearly Archive FacetWP
- * 
+ *
  * @author            Luca Grandicelli - https://www.lucagrandicelli.it
  * @copyright         Copyright (C) 2018, Luca Grandicelli - https://www.lucagrandicelli.it
  * @license           http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 or higher
  * @link              https://github.com/lucagrandicelli/yearly-archive-facetwp
  * @package           Yearly_Archive_FacetWP
  * @since             1.0.0
- * 
+ *
  * @wordpress-plugin
  * Plugin Name:       Yearly Archive FacetWP
  * Plugin URI:        https://github.com/lucagrandicelli/yearly-archive-facetwp
@@ -20,23 +20,25 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       yearly-archive-facetwp
  * Domain Path:       /languages
- * 
+ *
  * Yearly Archive FacetWP is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
  * any later version.
- * 
+ *
  * Yearly Archive FacetWP is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- 
+
  * You should have received a copy of the GNU General Public License
  * along with Yearly Archive FacetWP. If not, see http://www.gnu.org/licenses/gpl-3.0.html
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) die;
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 
 /**
  * Currently plugin version.
@@ -48,7 +50,7 @@ define( 'ARP_VERSION', '1.0.2' );
 /**
  * Plugin's prefix.
  */
-define( 'PLUGIN_PREFIX', 'YAF');
+define( 'PLUGIN_PREFIX', 'YAF' );
 
 /**
  * Custom constants.

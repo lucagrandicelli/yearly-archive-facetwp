@@ -11,7 +11,7 @@
  * @subpackage        Yearly_Archive_FacetWP/includes
  */
 class Yearly_Archive_FacetWP_Core {
-	
+
 	function __construct() {
 
 		// Setting up facet label.
@@ -45,20 +45,20 @@ class Yearly_Archive_FacetWP_Core {
 		}
 
 		// Count setting
-        $limit = ctype_digit( $facet['count'] ) ? $facet['count'] : 10;
+		$limit = array_key_exists( 'count', $facet ) && ctype_digit( $facet['count'] ) ? $facet['count'] : 10;
 
-		// Apllying filters to the SQL statement.
+		// Applying filters to the SQL statement.
 		$from_clause  = apply_filters( 'facetwp_facet_from', $from_clause, $facet );
 		$orderby      = apply_filters( 'facetwp_facet_orderby', $orderby, $facet );
 		$where_clause = apply_filters( 'facetwp_facet_where', $where_clause, $facet );
 
 		// Building up SQL statement.
 		$sql = "
-        SELECT DATE_FORMAT(f.facet_value, '%Y') as facet_value, f.facet_display_value, COUNT(*) AS counter
-        FROM $from_clause
-        WHERE f.facet_name = '{$facet['name']}' $where_clause
-        GROUP BY DATE_FORMAT(f.facet_value, '%Y')
-        ORDER BY $orderby
+		SELECT DATE_FORMAT(f.facet_value, '%Y') as facet_value, f.facet_display_value, COUNT(*) AS counter
+		FROM $from_clause
+		WHERE f.facet_name = '{$facet['name']}' $where_clause
+		GROUP BY DATE_FORMAT(f.facet_value, '%Y')
+		ORDER BY $orderby
 		LIMIT $limit";
 
 		// Return results.
@@ -80,8 +80,9 @@ class Yearly_Archive_FacetWP_Core {
 		$selected_values = (array) $params['selected_values'];
 
 		// Setting up label for the "any" choice.
-		$label_any = empty( $facet['label_any'] ) ? __( 'Any', 'yearly-archive-facetwp' ) : sprintf( __( '%s', 'yearly-archive-facetwp' ),
-			$facet['label_any'] );
+		$label_any = empty( $facet['label_any'] )
+			? __( 'Any', 'yearly-archive-facetwp' )
+			: sprintf( __( '%s', 'yearly-archive-facetwp' ), $facet['label_any'] );
 
 		// Building select HTML element for the facet backend.
 		$output .= '<select class="facetwp-yearly">';
@@ -113,7 +114,7 @@ class Yearly_Archive_FacetWP_Core {
 	/**
 	 * Filtering query upon selected values.
 	 * Returns array of post IDs matching the selected values
-     * using the wp_facetwp_index table
+	 * using the wp_facetwp_index table
 	 *
 	 * @param [array] $params
 	 * @return array
@@ -136,12 +137,12 @@ class Yearly_Archive_FacetWP_Core {
 
 		// Building up SQL statement in order to filter posts by the selected year.
 		$sql = $wpdb->prepare( "SELECT DISTINCT post_id
-            FROM {$wpdb->prefix}facetwp_index
-            WHERE facet_name = %s
-            AND YEAR(facet_value) = %d
-            ORDER BY facet_value DESC",
+			FROM {$wpdb->prefix}facetwp_index
+			WHERE facet_name = %s
+			AND YEAR(facet_value) = %d
+			ORDER BY facet_value DESC",
 			$facet['name'],
-			absint($selected_year)
+			absint( $selected_year )
 		);
 
 		// Getting results.
@@ -158,76 +159,75 @@ class Yearly_Archive_FacetWP_Core {
 	 * @return null
 	 */
 	function settings_html() { ?>
-        <tr class="facetwp-conditional type-yearly">
-            <td>
+		<tr class="facetwp-conditional type-yearly">
+			<td>
 				<?php _e( 'Default label', 'yearly-archive-facetwp' ); ?>:
-                <div class="facetwp-tooltip">
-                    <span class="icon-question">?</span>
-                    <div class="facetwp-tooltip-content">
-                    	Customize the first option label (default: "Any")
-                    </div>
-                </div>
-            </td>
-            <td>
-                <input type="text" class="facet-label-any" value="<?php _e( 'Any', 'yearly-archive-facetwp' ); ?>"/>
-            </td>
-        </tr>
-        <tr class="facetwp-conditional type-yearly">
-            <td>
+				<div class="facetwp-tooltip">
+					<span class="icon-question">?</span>
+					<div class="facetwp-tooltip-content">
+						Customize the first option label (default: "Any")
+					</div>
+				</div>
+			</td>
+			<td>
+				<input type="text" class="facet-label-any" value="<?php _e( 'Any', 'yearly-archive-facetwp' ); ?>"/>
+			</td>
+		</tr>
+		<tr class="facetwp-conditional type-yearly">
+			<td>
 				<?php _e( 'Archive order', 'yearly-archive-facetwp' ); ?>:
-                <div class="facetwp-tooltip">
-                    <span class="icon-question">?</span>
-                    <div class="facetwp-tooltip-content">
-                        Customize the archives order (default: "Newest to Oldest")
-                    </div>
-                </div>
-            </td>
-            <td>
-                <select class="facet-orderby">
-                    <option value="desc" selected><?php _e( 'Newest to Oldest', 'yearly-archive-facetwp' ); ?></option>
-                    <option value="asc"><?php _e( 'Oldest to newest', 'yearly-archive-facetwp' ); ?></option>
-                </select>
-            </td>
-        </tr>
-        <tr class="facetwp-conditional type-yearly">
-            <td>
+				<div class="facetwp-tooltip">
+					<span class="icon-question">?</span>
+					<div class="facetwp-tooltip-content">
+						Customize the archives order (default: "Newest to Oldest")
+					</div>
+				</div>
+			</td>
+			<td>
+				<select class="facet-orderby">
+					<option value="desc" selected><?php _e( 'Newest to Oldest', 'yearly-archive-facetwp' ); ?></option>
+					<option value="asc"><?php _e( 'Oldest to newest', 'yearly-archive-facetwp' ); ?></option>
+				</select>
+			</td>
+		</tr>
+		<tr class="facetwp-conditional type-yearly">
+			<td>
 				<?php _e( 'Count', 'yearly-archive-facetwp' ); ?>:
-                <div class="facetwp-tooltip">
-                    <span class="icon-question">?</span>
-                    <div class="facetwp-tooltip-content"><?php _e( 'The maximum number of facet choices to show',
-							'yearly-archive-facetwp' ); ?></div>
-                </div>
-            </td>
-            <td><input type="text" class="facet-count" value="10"/></td>
-        </tr>
+				<div class="facetwp-tooltip">
+					<span class="icon-question">?</span>
+					<div class="facetwp-tooltip-content"><?php _e( 'The maximum number of facet choices to show', 'yearly-archive-facetwp' ); ?></div>
+				</div>
+			</td>
+			<td><input type="text" class="facet-count" value="10"/></td>
+		</tr>
 	<?php }
 
 	/**
 	 * This function prints out the admin JS scripts to
-     * load and save facet settings.
+	 * load and save facet settings.
 	 * @return null
 	 */
 	function admin_scripts() { ?>
-        <script>
-          (function ($) {
+		<script>
+		(function ($) {
 
-            wp.hooks.addAction( 'facetwp/load/yearly', function ( $this, obj ) {
+			FWP.hooks.addAction( 'facetwp/load/yearly', function ( $this, obj ) {
 				$this.find( '.facet-source' ).val( obj['source'] );
 				$this.find( '.type-yearly .facet-label-any' ).val( obj['label_any'] );
 				$this.find( '.type-yearly .facet-orderby' ).val( obj['orderby'] );
 				$this.find( '.type-yearly .facet-count' ).val( obj['count'] );
-            });
+			});
 
-            wp.hooks.addFilter( 'facetwp/save/yearly', function ( $this, obj ) {
+			FWP.hooks.addFilter( 'facetwp/save/yearly', function ( $this, obj ) {
 				obj['source'] = $this.find('.facet-source').val();
 				obj['label_any'] = $this.find('.type-yearly .facet-label-any').val();
 				obj['orderby'] = $this.find('.type-yearly .facet-orderby').val();
 				obj['count'] = $this.find('.type-yearly .facet-count').val();
 				return obj;
-            });
+			});
 
-          })(jQuery);
-        </script>
+		})(jQuery);
+		</script>
 	<?php }
 
 	/**
@@ -235,23 +235,23 @@ class Yearly_Archive_FacetWP_Core {
 	 * @return null
 	 */
 	function front_scripts() { ?>
-        <script>
-        	(function ($) {
-        		wp.hooks.addAction('facetwp/refresh/yearly', function ($this, facet_name) {
-        			var val = $this.find('.facetwp-yearly').val();
-        			FWP.facets[facet_name] = val ? [val] : [];
-        		});
+		<script>
+			(function ($) {
+				FWP.hooks.addAction('facetwp/refresh/yearly', function ($this, facet_name) {
+					var val = $this.find('.facetwp-yearly').val();
+					FWP.facets[facet_name] = val ? [val] : [];
+				});
 
-        		wp.hooks.addAction('facetwp/ready', function () {
-        			$(document).on('change', '.facetwp-facet .facetwp-yearly', function () {
-        				var $facet = $(this).closest('.facetwp-facet');
-        				if ('' != $facet.find(':selected').val()) {
-        					FWP.static_facet = $facet.attr('data-name');
-        				}
-        				FWP.autoload();
-        			});
-        		});
-        	})(jQuery);
-        </script>
+				FWP.hooks.addAction('facetwp/ready', function () {
+					$(document).on('change', '.facetwp-facet .facetwp-yearly', function () {
+						var $facet = $(this).closest('.facetwp-facet');
+						if ('' != $facet.find(':selected').val()) {
+							FWP.static_facet = $facet.attr('data-name');
+						}
+						FWP.autoload();
+					});
+				});
+			})(jQuery);
+		</script>
 	<?php }
 }
