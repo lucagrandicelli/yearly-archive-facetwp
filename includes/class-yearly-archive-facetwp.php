@@ -57,8 +57,8 @@ class Yearly_Archive_FacetWP {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'ARP_VERSION' ) ) {
-			$this->version = ARP_VERSION;
+		if ( defined( 'YAF' ) ) {
+			$this->version =  YAF;
 		} else {
 			$this->version = '1.0.0';
 		}
