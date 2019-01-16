@@ -57,11 +57,7 @@ class Yearly_Archive_FacetWP {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'YAF' ) ) {
-			$this->version =  YAF;
-		} else {
-			$this->version = '1.0.0';
-		}
+		$this->version     = defined( 'YAF' ) ? YAF : '1.0.0';
 		$this->plugin_name = 'yearly-archive-facetwp';
 
 		$this->load_dependencies();

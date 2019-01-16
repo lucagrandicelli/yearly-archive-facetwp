@@ -80,7 +80,7 @@ class Yearly_Archive_FacetWP_Core {
 		$selected_values = (array) $params['selected_values'];
 
 		// Setting up label for the "any" choice.
-		$label_any = empty( $facet['label_any'] )
+		$label_any = ! array_key_exists( 'label_any', $facet ) && empty( $facet['label_any'] )
 			? __( 'Any', 'yearly-archive-facetwp' )
 			: sprintf( __( '%s', 'yearly-archive-facetwp' ), $facet['label_any'] );
 
@@ -99,7 +99,9 @@ class Yearly_Archive_FacetWP_Core {
 
 			// Displaying counter.
 			$show_counts = apply_filters( 'facetwp_facet_dropdown_show_counts', true );
-			if ( $show_counts ) $display_value .= sprintf( ' (%s)', $result['counter'] );
+			if ( $show_counts ) {
+				$display_value .= sprintf( ' (%s)', $result['counter'] );
+			}
 
 			// Building select option html.
 			$output .= sprintf( '<option value="%s" %s>%s</option>', esc_attr( $result['facet_value'] ), $selected, esc_html( $display_value ) );
