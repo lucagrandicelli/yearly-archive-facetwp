@@ -84,8 +84,11 @@ class Yearly_Archive_FacetWP_Core {
 			? __( 'Any', 'yearly-archive-facetwp' )
 			: sprintf( __( '%s', 'yearly-archive-facetwp' ), $facet['label_any'] );
 
+		// Setting classes for the select element.
+		$select_classes = empty( $selected_values ) ? 'facetwp-yearly facetwp-yearly-default' : 'facetwp-yearly';
+
 		// Building select HTML element for the facet backend.
-		$output .= '<select class="facetwp-yearly">';
+		$output .= '<select class="' . $select_classes . '">';
 		$output .= sprintf( '<option value="">%s</option>', esc_html( $label_any ) );
 
 		// Looping through values.
@@ -247,9 +250,9 @@ class Yearly_Archive_FacetWP_Core {
 				FWP.hooks.addAction('facetwp/ready', function () {
 					$(document).on('change', '.facetwp-facet .facetwp-yearly', function () {
 						var $facet = $(this).closest('.facetwp-facet');
-						if ('' != $facet.find(':selected').val()) {
-							FWP.static_facet = $facet.attr('data-name');
-						}
+						var isDefault = $facet.find(':selected').val() === '';
+						if (!isDefault) FWP.static_facet = $facet.attr('data-name');
+						$facet.find('select').toggleClass('facetwp-yearly-default', isDefault)
 						FWP.autoload();
 					});
 				});
