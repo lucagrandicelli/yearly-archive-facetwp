@@ -161,47 +161,47 @@ class Yearly_Archive_FacetWP_Core {
 	 * @return null
 	 */
 	function settings_html() { ?>
-		<tr class="facetwp-conditional type-yearly">
-			<td>
+		<div class="facetwp-row">
+			<div>
 				<?php _e( 'Default label', 'yearly-archive-facetwp' ); ?>:
 				<div class="facetwp-tooltip">
 					<span class="icon-question">?</span>
 					<div class="facetwp-tooltip-content">
-						Customize the first option label (default: "Any")
+						<?php _e( 'Customize the first option label (default: "Any")', 'yearly-archive-facetwp' ); ?>
 					</div>
 				</div>
-			</td>
-			<td>
-				<input type="text" class="facet-label-any" value="<?php _e( 'Any', 'yearly-archive-facetwp' ); ?>"/>
-			</td>
-		</tr>
-		<tr class="facetwp-conditional type-yearly">
-			<td>
+			</div>
+			<div><input type="text" class="facet-label-any" value="<?php _e( 'Any', 'yearly-archive-facetwp' ); ?>"/></div>
+		</div>
+		<div class="facetwp-row">
+			<div>
 				<?php _e( 'Archive order', 'yearly-archive-facetwp' ); ?>:
 				<div class="facetwp-tooltip">
 					<span class="icon-question">?</span>
 					<div class="facetwp-tooltip-content">
-						Customize the archives order (default: "Newest to Oldest")
+						<?php _e( 'Customize the archives order (default: "Newest to Oldest")', 'yearly-archive-facetwp' ); ?>
 					</div>
 				</div>
-			</td>
-			<td>
+			</div>
+			<div>
 				<select class="facet-orderby">
 					<option value="desc" selected><?php _e( 'Newest to Oldest', 'yearly-archive-facetwp' ); ?></option>
 					<option value="asc"><?php _e( 'Oldest to newest', 'yearly-archive-facetwp' ); ?></option>
 				</select>
-			</td>
-		</tr>
-		<tr class="facetwp-conditional type-yearly">
-			<td>
+			</div>
+		</div>
+		<div class="facetwp-row">
+			<div>
 				<?php _e( 'Count', 'yearly-archive-facetwp' ); ?>:
 				<div class="facetwp-tooltip">
 					<span class="icon-question">?</span>
-					<div class="facetwp-tooltip-content"><?php _e( 'The maximum number of facet choices to show', 'yearly-archive-facetwp' ); ?></div>
+					<div class="facetwp-tooltip-content">
+						<?php _e( 'The maximum number of facet choices to show', 'yearly-archive-facetwp' ); ?>
+					</div>
 				</div>
-			</td>
-			<td><input type="text" class="facet-count" value="10"/></td>
-		</tr>
+			</div>
+			<div><input type="text" class="facet-count" value="10"/></div>
+		</div>
 	<?php }
 
 	/**
