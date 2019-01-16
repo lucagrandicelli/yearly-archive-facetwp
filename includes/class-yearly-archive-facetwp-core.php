@@ -80,7 +80,7 @@ class Yearly_Archive_FacetWP_Core {
 		$selected_values = (array) $params['selected_values'];
 
 		// Setting up label for the "any" choice.
-		$label_any = ! array_key_exists( 'label_any', $facet ) && empty( $facet['label_any'] )
+		$label_any = ! array_key_exists( 'label_any', $facet ) || empty( $facet['label_any'] )
 			? __( 'Any', 'yearly-archive-facetwp' )
 			: sprintf( __( '%s', 'yearly-archive-facetwp' ), $facet['label_any'] );
 
