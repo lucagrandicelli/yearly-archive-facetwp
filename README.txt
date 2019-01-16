@@ -3,7 +3,7 @@ Contributors: lucagrandicelli
 Tags: facetwp, archive, year, yearly, facet
 Requires at least: 3.0.1
 Tested up to: 5.0.3
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -36,6 +36,11 @@ This is because your FacetWP plugin is indexing both posts, pages or some other 
 https://www.youtube.com/watch?v=7CeLAv-ZLjA
 
 == Changelog ==
+
+= 2.0.1 =
+* Fix notices when trying to access undefined array keys
+* Fix broken facet settings
+* Added default class to allow for custom styling
 
 = 2.0.0 =
 * Updated hooks library reference to FWP.hooks as per new changes in WP 5.0 release.
