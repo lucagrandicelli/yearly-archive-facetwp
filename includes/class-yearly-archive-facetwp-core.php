@@ -12,10 +12,23 @@
  */
 class Yearly_Archive_FacetWP_Core {
 
+	// Declaring current hooks library name to be uses throughout the plugin.
+	private $hooks_lib_name = 'FWP';
+
 	function __construct() {
 
 		// Setting up facet label.
 		$this->label = __( 'Yearly Archive', 'yearly-archive-facetwp' );
+
+		// Fetching current FacetWP version
+		$current_facetwp_version = FACETWP_VERSION;
+
+		/**
+		 * Let's perform an additional check to make sure we're calling the right hook library name.
+		 * NOTE: Since FacetWP v.3.2.11, the hook library was renamed to 'FWP' in order to avoid the conflict
+		 * with the javascript wp.hook library introduced with Wordpress > 5.0.
+		 */
+		if ( version_compare( $current_facetwp_version, '3.2.11', '<' ) ) $this->hooks_lib_name = 'wp';
 	}
 
 	/**
@@ -216,14 +229,14 @@ class Yearly_Archive_FacetWP_Core {
 		<script>
 		(function ($) {
 
-			FWP.hooks.addAction( 'facetwp/load/yearly', function ( $this, obj ) {
+			<?php echo $this->hooks_lib_name; ?>.hooks.addAction( 'facetwp/load/yearly', function ( $this, obj ) {
 				$this.find( '.facet-source' ).val( obj['source'] );
 				$this.find( '.type-yearly .facet-label-any' ).val( obj['label_any'] );
 				$this.find( '.type-yearly .facet-orderby' ).val( obj['orderby'] );
 				$this.find( '.type-yearly .facet-count' ).val( obj['count'] );
 			});
 
-			FWP.hooks.addFilter( 'facetwp/save/yearly', function ( $this, obj ) {
+			<?php echo $this->hooks_lib_name; ?>.hooks.addFilter( 'facetwp/save/yearly', function ( $this, obj ) {
 				obj['source'] = $this.find('.facet-source').val();
 				obj['label_any'] = $this.find('.type-yearly .facet-label-any').val();
 				obj['orderby'] = $this.find('.type-yearly .facet-orderby').val();
@@ -242,12 +255,12 @@ class Yearly_Archive_FacetWP_Core {
 	function front_scripts() { ?>
 		<script>
 			(function ($) {
-				FWP.hooks.addAction('facetwp/refresh/yearly', function ($this, facet_name) {
+				<?php echo $this->hooks_lib_name; ?>.hooks.addAction('facetwp/refresh/yearly', function ($this, facet_name) {
 					var val = $this.find('.facetwp-yearly').val();
 					FWP.facets[facet_name] = val ? [val] : [];
 				});
 
-				FWP.hooks.addAction('facetwp/ready', function () {
+				<?php echo $this->hooks_lib_name; ?>.hooks.addAction('facetwp/ready', function () {
 					$(document).on('change', '.facetwp-facet .facetwp-yearly', function () {
 						var $facet = $(this).closest('.facetwp-facet');
 						var isDefault = $facet.find(':selected').val() === '';
