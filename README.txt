@@ -36,7 +36,7 @@ This is because your FacetWP plugin is indexing both posts, pages or some other 
 https://www.youtube.com/watch?v=7CeLAv-ZLjA
 
 == Changelog ==
-= 2.1.0 =
+= 2.1.1 =
 * Added compatibility support for Wordpress 5.1.0
 
 = 2.1.0 =
