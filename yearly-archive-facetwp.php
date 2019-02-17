@@ -13,7 +13,7 @@
  * Plugin Name:       Yearly Archive FacetWP
  * Plugin URI:        https://github.com/lucagrandicelli/yearly-archive-facetwp
  * Description:       This is a free add-on for the FacetWP plugin (https://facetwp.com/). It adds a new facet type called "Yearly Archive" which can display a list of years with an associated counter of published posts.
- * Version:           2.1.0
+ * Version:           2.1.1
  * Author:            Luca Grandicelli
  * Author URI:        https://www.lucagrandicelli.it
  * License:           GPL-3.0+
@@ -45,7 +45,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'YAF', '2.1.0' );
+define( 'YAF', '2.1.1' );
 
 /**
  * Plugin's prefix.

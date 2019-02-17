@@ -2,8 +2,8 @@
 Contributors: lucagrandicelli
 Tags: facetwp, archive, year, yearly, facet
 Requires at least: 3.0.1
-Tested up to: 5.0.3
-Stable tag: 2.1.0
+Tested up to: 5.1.0
+Stable tag: 2.1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -36,6 +36,9 @@ This is because your FacetWP plugin is indexing both posts, pages or some other 
 https://www.youtube.com/watch?v=7CeLAv-ZLjA
 
 == Changelog ==
+= 2.1.0 =
+* Added compatibility support for Wordpress 5.1.0
+
 = 2.1.0 =
 * Added support for the hooks library on FacetWP versions < 3.2.11
 
