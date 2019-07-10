@@ -5,7 +5,7 @@ This Wordpress plugin is an add-on for the FacetWP plugin ([https://facetwp.com/
 [![Wordpress Plugin Version](https://img.shields.io/wordpress/plugin/v/yearly-archive-facetwp.svg?style=flat-square)](https://wordpress.org/plugins/yearly-archive-facetwp/) [![Wordpress Plugin: Tested WP Version](https://img.shields.io/wordpress/plugin/tested/yearly-archive-facetwp.svg?style=flat-square)](https://wordpress.org/plugins/yearly-archive-facetwp/)
 
 ## How it works (Youtube video)
-([Watch the YouTube video](https://www.youtube.com/watch?v=7CeLAv-ZLjA))
+[Watch the YouTube video](https://www.youtube.com/watch?v=7CeLAv-ZLjA)
 
 ## Frequently Asked Questions
 
